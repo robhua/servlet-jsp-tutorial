@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAO;
+import com.servletjsp.tutorial.dao.DAO;
+
 import entity.Account;
 
 /**
