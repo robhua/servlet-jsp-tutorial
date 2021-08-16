@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+
+	<display-name>SampleProject</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>ControllerProduct</servlet-name>
+		<servlet-class>com.servletjsp.product.ControllerProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControllerProduct</servlet-name>
+		<url-pattern>/product</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>beer</param-name>
+		<param-value>Dog Great</param-value>
+	</context-param>
+	<listener>
+		<display-name>ContextListener</display-name>
+		<listener-class>com.servletjsp.config.CRUDContextListener</listener-class>
+	</listener>
+</web-app>
