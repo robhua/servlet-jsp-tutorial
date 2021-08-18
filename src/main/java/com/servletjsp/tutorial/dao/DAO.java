@@ -37,7 +37,7 @@ public class DAO {
 
     private static final String NEXTT_TOP_3_PRODUCT =       " SELECT * " + 
                                                             " FROM " + 
-                                                                    DBTables.PRODUCT + 
+                                                                DBTables.PRODUCT + 
                                                             " ORDER BY " + 
                                                                     PRODUCT.PRODUCT_ID + 
                                                             " OFFSET ? ROWS  FETCH NEXT 3 ROWS ONLY ";
