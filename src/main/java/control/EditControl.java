@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 /**
  * 
@@ -45,7 +46,7 @@ public class EditControl extends HttpServlet {
         String ptitle = request.getParameter("title");
         String pdescription = request.getParameter("description");
         String pcategory = request.getParameter("category");
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         dao.editProduct(pname, pimage, pprice, ptitle, pdescription, pcategory, pid);
         response.sendRedirect("manager");
     }

@@ -5,17 +5,20 @@
  */
 package control;
 
-import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
+
+import entity.Product;
 
 /**
  *
@@ -41,7 +44,7 @@ public class SearchByAjax extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");//giay chay bo
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         List<Product> list = dao.searchByName(txtSearch);
         PrintWriter out = response.getWriter();
         for (Product o : list) {

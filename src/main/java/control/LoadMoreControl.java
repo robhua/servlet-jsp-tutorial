@@ -5,17 +5,20 @@
  */
 package control;
 
-import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
+
+import entity.Product;
 
 /**
  *
@@ -41,7 +44,7 @@ public class LoadMoreControl extends HttpServlet {
         //tam thoi load ra 3 san pham truoc 
         String amount = request.getParameter("exits");
         int iamount = Integer.parseInt(amount);
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         List<Product> list = dao.getNext3Product(iamount);
         PrintWriter out = response.getWriter();
 

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Account;
 
@@ -52,7 +52,7 @@ public class AddControl extends HttpServlet {
         int sid = a.getId();
         
         
-        DAO dao = new DAO();
+        ProductDaoImpl dao = new ProductDaoImpl();
         dao.insertProduct(pname, pimage, pprice, ptitle, pdescription, pcategory, sid);
         response.sendRedirect("manager");
     }

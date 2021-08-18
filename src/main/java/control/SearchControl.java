@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Category;
 import entity.Product;
@@ -23,7 +26,7 @@ import entity.Product;
  *
  * @author trinh
  */
-@WebServlet(name = "SearchControl", urlPatterns = {"/search"})
+@WebServlet(name = "SearchControl", urlPatterns = { "/search" })
 public class SearchControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -32,21 +35,23 @@ public class SearchControl extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");//giay chay bo
-        DAO dao = new DAO();
+        String txtSearch = request.getParameter("txt");// giay chay bo
+        ProductDao dao = new ProductDaoImpl();
         List<Product> list = dao.searchByName(txtSearch);
-        List<Category> listC = dao.getAllCategory();
+        CategoryDao categoryDao = new CategoryDaoImpl();
+        List<Category> listC = categoryDao.getAllCategory();
+
         Product last = dao.getLast();
-        
+
         request.setAttribute("listP", list);
         request.setAttribute("listCC", listC);
         request.setAttribute("p", last);
@@ -54,14 +59,15 @@ public class SearchControl extends HttpServlet {
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -72,10 +78,10 @@ public class SearchControl extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

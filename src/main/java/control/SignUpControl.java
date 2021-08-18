@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.UidDao;
+import com.servletjsp.tutorial.dao.imp.UidDaoImpl;
 
 import entity.Account;
 
@@ -44,11 +45,11 @@ public class SignUpControl extends HttpServlet {
         if(!pass.equals(re_pass)){
             response.sendRedirect("Login.jsp");
         }else{
-            DAO dao = new DAO();
+            UidDao dao = new UidDaoImpl();
             Account a = dao.checkAccountExist(user);
             if(a == null){
                 //dc signup
-                dao.singup(user, pass);
+                dao.signUp(user, pass);
                 response.sendRedirect("home");
             }else{
                 //day ve trang login.jsp

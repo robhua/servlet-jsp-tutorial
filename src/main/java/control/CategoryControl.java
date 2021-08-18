@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Category;
 import entity.Product;
@@ -43,9 +46,10 @@ public class CategoryControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String cateID = request.getParameter("cid");
         //da lay dc category id ve roi
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
+        CategoryDao categoryDao = new CategoryDaoImpl();
         List<Product> list = dao.getProductByCID(cateID);
-        List<Category> listC = dao.getAllCategory();
+        List<Category> listC = categoryDao.getAllCategory();
         Product last = dao.getLast();
         
         

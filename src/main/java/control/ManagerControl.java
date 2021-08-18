@@ -15,7 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Account;
 import entity.Category;
@@ -45,9 +48,10 @@ public class ManagerControl extends HttpServlet {
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("acc");
         int id = a.getId();
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         List<Product> list = dao.getProductBySellID(id);
-        List<Category> listC = dao.getAllCategory();
+        CategoryDao categoryDao = new CategoryDaoImpl();
+        List<Category> listC = categoryDao.getAllCategory();
 
         request.setAttribute("listCC", listC);
         request.setAttribute("listP", list);

@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Category;
 import entity.Product;
@@ -41,9 +44,10 @@ public class DetailControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("pid");
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         Product p = dao.getProductByID(id);
-        List<Category> listC = dao.getAllCategory();
+        CategoryDao categoryDao = new CategoryDaoImpl();
+        List<Category> listC = categoryDao.getAllCategory();
         Product last = dao.getLast();
 
         request.setAttribute("detail", p);

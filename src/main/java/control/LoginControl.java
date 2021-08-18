@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.UidDao;
+import com.servletjsp.tutorial.dao.imp.UidDaoImpl;
 
 import entity.Account;
 
@@ -73,7 +74,7 @@ public class LoginControl extends HttpServlet {
         //processRequest(request, response);
         String username = request.getParameter("user");
         String password = request.getParameter("pass");
-        DAO dao = new DAO();
+        UidDao dao = new UidDaoImpl();
         Account a = dao.login(username, password);
         if (a == null) {
             request.setAttribute("mess", "wrong username or password");

@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 /**
  *
@@ -37,7 +38,7 @@ public class DeleteControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String pid = request.getParameter("pid");
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         dao.deleteProduct(pid);
         response.sendRedirect("manager");
     }
