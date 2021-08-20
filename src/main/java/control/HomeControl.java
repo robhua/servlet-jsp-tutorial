@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.constant.WebConstant;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Category;
 import entity.Product;
@@ -23,7 +27,7 @@ import entity.Product;
  * @author Admin
  *
  */
-@WebServlet(name = "HomeControl", urlPatterns = {"/home"})
+@WebServlet(name = "HomeControl", urlPatterns = {WebConstant.URL_PATTERN_HOME})
 public class HomeControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -39,11 +43,12 @@ public class HomeControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
         //b1: get data from dao
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         List<Product> list = dao.getTop3();
-        List<Category> listC = dao.getAllCategory();
+        CategoryDao categoryDao = new CategoryDaoImpl();
+        List<Category> listC = categoryDao.getAllCategory();
         Product last = dao.getLast();
         
         //b2: set data to jsp

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.constant.WebConstant;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Account;
 
@@ -23,7 +24,7 @@ import entity.Account;
  * @author Admin
  *
  */
-@WebServlet(name = "AddControl", urlPatterns = {"/add"})
+@WebServlet(name = "AddControl", urlPatterns = { WebConstant.URL_PATTERN_SIGN_ADD })
 public class AddControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +40,7 @@ public class AddControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
         request.setCharacterEncoding("UTF-8");
         String pname = request.getParameter("name");
         String pimage = request.getParameter("image");
@@ -52,7 +53,7 @@ public class AddControl extends HttpServlet {
         int sid = a.getId();
         
         
-        DAO dao = new DAO();
+        ProductDaoImpl dao = new ProductDaoImpl();
         dao.insertProduct(pname, pimage, pprice, ptitle, pdescription, pcategory, sid);
         response.sendRedirect("manager");
     }

@@ -13,15 +13,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
-
+import com.servletjsp.tutorial.constant.WebConstant;
+import com.servletjsp.tutorial.dao.UidDao;
+import com.servletjsp.tutorial.dao.imp.UidDaoImpl;
 import entity.Account;
+
+import static com.servletjsp.tutorial.constant.WebConstant.URL_PATTERN_SIGN_UP;
 
 /**
  *
- * @author trinh
+ * @author Admin
  */
-@WebServlet(name = "SignUpControl", urlPatterns = {"/signup"})
+@WebServlet(name = "SignUpControl", urlPatterns = { URL_PATTERN_SIGN_UP })
 public class SignUpControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -30,42 +33,43 @@ public class SignUpControl extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
         String re_pass = request.getParameter("repass");
-        if(!pass.equals(re_pass)){
+        if (!pass.equals(re_pass)) {
             response.sendRedirect("Login.jsp");
-        }else{
-            DAO dao = new DAO();
+        } else {
+            UidDao dao = new UidDaoImpl();
             Account a = dao.checkAccountExist(user);
-            if(a == null){
-                //dc signup
-                dao.singup(user, pass);
+            if (a == null) {
+                // dc signup
+                dao.signUp(user, pass);
                 response.sendRedirect("home");
-            }else{
-                //day ve trang login.jsp
+            } else {
+                // day ve trang login.jsp
                 response.sendRedirect("Login.jsp");
             }
         }
-        //sign up
+        // sign up
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -76,10 +80,10 @@ public class SignUpControl extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.servletjsp.tutorial.dao.DAO;
+import com.servletjsp.tutorial.constant.WebConstant;
+import com.servletjsp.tutorial.dao.CategoryDao;
+import com.servletjsp.tutorial.dao.ProductDao;
+import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
+import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
 
 import entity.Category;
 import entity.Product;
@@ -24,7 +28,7 @@ import entity.Product;
  * @author Admin
  *
  */
-@WebServlet(name = "LoadControl", urlPatterns = {"/loadProduct"})
+@WebServlet(name = "LoadControl", urlPatterns = { WebConstant.URL_PATTERN_LOAD_PRODUCT })
 public class LoadControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -33,32 +37,34 @@ public class LoadControl extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
         String id = request.getParameter("pid");
-        DAO dao = new DAO();
+        ProductDao dao = new ProductDaoImpl();
         Product p = dao.getProductByID(id);
-        List<Category> listC = dao.getAllCategory();
+        CategoryDao categoryDao = new CategoryDaoImpl();
+        List<Category> listC = categoryDao.getAllCategory();
 
         request.setAttribute("detail", p);
         request.setAttribute("listCC", listC);
         request.getRequestDispatcher("Edit.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -69,10 +75,10 @@ public class LoadControl extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
