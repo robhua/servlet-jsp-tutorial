@@ -41,7 +41,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> getAllProduct() {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         try {
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(SELECT_ALL_PRODUCT);
@@ -59,7 +59,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> getTop3() {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql
             ps = conn.prepareStatement(SELECT_TOP_3_PRODUCT);
@@ -77,7 +77,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> getNext3Product(int amount) {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql
             ps = conn.prepareStatement(NEXTT_TOP_3_PRODUCT);
@@ -96,7 +96,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> getProductByCID(String cid) {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql
             ps = conn.prepareStatement(SELECT_PRODUCT_BY_CATEGORY);
@@ -115,7 +115,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> getProductBySellID(int id) {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         String query = "select * from product\n" + "where sell_ID = ?";
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql
@@ -135,7 +135,7 @@ public class ProductDaoImpl implements ProductDao {
      * {@inheritDoc}
      */
     public List<Product> searchByName(String txtSearch) {
-        List<Product> list = new ArrayList<>();
+        List<Product> list = new ArrayList<Product>();
         String query = "select * from product\n" + "where [name] like ?";
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql

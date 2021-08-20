@@ -25,7 +25,7 @@ public class CategoryDaoImpl implements CategoryDao {
      * {@inheritDoc}
      */
     public List<Category> getAllCategory() {
-        List<Category> list = new ArrayList<>();
+        List<Category> list = new ArrayList<Category>();
         String query = "select * from Category";
         try {
             conn = DBContext.getConnection();// mo ket noi voi sql

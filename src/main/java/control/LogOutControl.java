@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.servletjsp.tutorial.constant.WebConstant;
+
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "LogOutControl", urlPatterns = {"/logout"})
+@WebServlet(name = "LogOutControl", urlPatterns = {WebConstant.URL_PATTERN_LOGOUT})
 public class LogOutControl extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +36,7 @@ public class LogOutControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
         HttpSession session = request.getSession();
         session.removeAttribute("acc");
         response.sendRedirect("home");
