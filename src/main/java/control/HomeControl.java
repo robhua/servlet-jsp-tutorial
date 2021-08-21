@@ -52,7 +52,7 @@ public class HomeControl extends HttpServlet {
         Product last = dao.getLast();
         
         //b2: set data to jsp
-        request.setAttribute("listP", list);
+        request.setAttribute("productList", list);
         request.setAttribute("listCC", listC);
         request.setAttribute("p", last);
         request.getRequestDispatcher("Home.jsp").forward(request, response);

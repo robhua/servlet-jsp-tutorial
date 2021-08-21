@@ -33,16 +33,16 @@
 
                     <div class="col-sm-9">
                         <div id="content" class="row">
-                        <c:forEach items="${listP}" var="o">
+                        <c:forEach items="${productList}" var="product">
                             <div class="product col-12 col-md-6 col-lg-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="${o.image}" alt="Card image cap">
+                                    <img class="card-img-top" src="${product.image}" alt="Card image cap">
                                     <div class="card-body">
-                                        <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
-                                        <p class="card-text show_txt">${o.title}</p>
+                                        <h4 class="card-title show_txt"><a href="detail?pid=${product.id}" title="View Product">${product.name}</a></h4>
+                                        <p class="card-text show_txt">${product.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} $</p>
+                                                <p class="btn btn-danger btn-block">${product.price} $</p>
                                             </div>
                                             <div class="col">
                                                 <a href="#" class="btn btn-success btn-block">Add to cart</a>
@@ -65,7 +65,7 @@
                         function loadMore() {
                             var amount = document.getElementsByClassName("product").length;
                             $.ajax({
-                                url: "/Project_banhang/load",
+                                url: "/ServletJspCRUD/load",
                                 type: "get", //send it through get method
                                 data: {
                                     exits: amount
@@ -82,7 +82,7 @@
                         function searchByName(param){
                             var txtSearch = param.value;
                             $.ajax({
-                                url: "/Project_banhang/searchAjax",
+                                url: "/ServletJspCRUD/searchAjax",
                                 type: "get", //send it through get method
                                 data: {
                                     txt: txtSearch
