@@ -56,7 +56,6 @@ public class ManagerControl extends HttpServlet {
 
         request.setAttribute("listCC", listC);
         request.setAttribute("listP", list);
-        request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
@@ -73,6 +72,7 @@ public class ManagerControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        forwardRequest(request, response, "ManagerProduct.jsp");
     }
 
     /**
@@ -87,6 +87,7 @@ public class ManagerControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        forwardRequest(request, response, "ManagerProduct.jsp");
     }
 
     /**
@@ -99,4 +100,8 @@ public class ManagerControl extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    protected void forwardRequest(HttpServletRequest request, HttpServletResponse response, String path)
+            throws ServletException, IOException {
+        request.getRequestDispatcher(path).forward(request, response);
+    }
 }
