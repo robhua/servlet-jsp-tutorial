@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.servletjsp.tutorial.constant.WebConstant;
+import com.servletjsp.tutorial.constant.WebConstantPages;
 import com.servletjsp.tutorial.dao.CategoryDao;
 import com.servletjsp.tutorial.dao.ProductDao;
 import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
@@ -72,7 +73,7 @@ public class ManagerControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        forwardRequest(request, response, "ManagerProduct.jsp");
+        forwardRequest(request, response, WebConstantPages.PAGE_MANAGER_PRODUCT);
     }
 
     /**
@@ -87,7 +88,7 @@ public class ManagerControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        forwardRequest(request, response, "ManagerProduct.jsp");
+        forwardRequest(request, response, WebConstantPages.PAGE_MANAGER_PRODUCT);
     }
 
     /**
