@@ -33,9 +33,9 @@ public class ProductDaoImpl implements ProductDao {
             + PRODUCT.PRODUCT_ID + " OFFSET ? ROWS  FETCH NEXT 3 ROWS ONLY ";
     private static final String SELECT_PRODUCT_BY_CATEGORY = " SELECT * " + " FROM " + DBTables.PRODUCT + " WHERE "
             + PRODUCT.CATEGORY_ID + " = ? ";
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
+    private Connection          conn                       = null;
+    private PreparedStatement   ps                         = null;
+    private ResultSet           rs                         = null;
 
     /**
      * {@inheritDoc}

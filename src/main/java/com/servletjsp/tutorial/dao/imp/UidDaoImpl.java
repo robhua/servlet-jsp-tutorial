@@ -15,9 +15,9 @@ import entity.Account;
  *
  */
 public class UidDaoImpl implements UidDao {
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
+    private Connection        conn = null;
+    private PreparedStatement ps   = null;
+    private ResultSet         rs   = null;
 
     /**
      * {@inheritDoc}

@@ -18,7 +18,7 @@ public class DBContext {
         Connection conn = null;
 
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
- 
+
         try (InputStream f = classLoader.getResourceAsStream("db.properties")) {
 
             // load the properties file
@@ -29,7 +29,7 @@ public class DBContext {
             String url = pros.getProperty("url");
             String user = pros.getProperty("user");
             String password = pros.getProperty("password");
-            
+
             // create a connection to the database
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);

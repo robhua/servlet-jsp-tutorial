@@ -17,9 +17,9 @@ import entity.Category;
  *
  */
 public class CategoryDaoImpl implements CategoryDao {
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
+    private Connection        conn = null;
+    private PreparedStatement ps   = null;
+    private ResultSet         rs   = null;
 
     /**
      * {@inheritDoc}
