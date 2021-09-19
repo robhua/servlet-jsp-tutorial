@@ -14,6 +14,7 @@ public class CrudSettingUtil {
     public static final String CRUD_WEB_SETTING      = "CrudWeb";
     public static final String CRUD_EXTERNAL_SETTING = "ExternalSystem";
     public static final String CRUD_WEB_SYS_ENV      = "web.crud.sys.env";
+    public static final String EXPORT_FOLDER         = "export.folder";
 
     private CrudSettingUtil() {
         // nop
@@ -31,11 +32,11 @@ public class CrudSettingUtil {
             ResourceBundle _resourceBundle = PropertyResourceBundle.getBundle(CRUD_WEB_SETTING);
             _resourceBundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.READ_PROPERTY, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstatns.ERROR_READ_PROPERTY, e);
         }
         return _value;
     }
-    
+
     /**
      * Get crud setting by its key
      * 
@@ -48,7 +49,7 @@ public class CrudSettingUtil {
             ResourceBundle _resourceBundle = PropertyResourceBundle.getBundle(CRUD_EXTERNAL_SETTING);
             _resourceBundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.READ_PROPERTY, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstatns.ERROR_READ_PROPERTY, e);
         }
         return _value;
     }

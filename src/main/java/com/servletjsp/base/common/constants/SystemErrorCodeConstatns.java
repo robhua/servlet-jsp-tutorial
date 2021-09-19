@@ -19,9 +19,9 @@ public final class SystemErrorCodeConstatns {
     /**
      * Failed to read property.
      */
-    public static final String READ_PROPERTY         = "E00017";
+    public static final String ERROR_READ_PROPERTY   = "E00017";
     /**
      * Failed to load property file
      */
-    public static final String LOAD_PROPERTY         = "E00018";
+    public static final String ERROR_LOAD_PROPERTY   = "E00018";
 }
