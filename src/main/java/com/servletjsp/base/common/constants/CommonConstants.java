@@ -10,6 +10,13 @@ public class CommonConstants {
     public static final String DEFAULT_VALUE_ONE  = "1";
     public static final String DEFAULT_VALUE_ALL  = "ALL";
 
+    /*
+     * Integer value constant
+     */
+    public static final int    INT_MINUS_1        = -1;
+
+    public static final int    INT_0              = 0;
     public static final int    INT_1              = 1;
+    public static final int    INT_1000           = 1000;
 
 }
