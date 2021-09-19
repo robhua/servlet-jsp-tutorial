@@ -21,8 +21,17 @@
 		<param-name>beer</param-name>
 		<param-value>Dog Great</param-value>
 	</context-param>
-	<listener>
-		<display-name>ContextListener</display-name>
-		<listener-class>com.servletjsp.config.CRUDContextListener</listener-class>
-	</listener>
+<!-- 	<listener>
+		<display-name>DataSource</display-name>
+		<listener-class>com.servletjsp.config.DataSourceContextListener</listener-class>
+	</listener> -->
+
+<!-- 	<filter>
+		<filter-name>DebuggingFilter</filter-name>
+		<filter-class>com.servlet.presentation.DebuggingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	   <filter-name>DebuggingFilter</filter-name>
+	   <url-pattern>/home</url-pattern>
+	</filter-mapping> -->
 </web-app>
