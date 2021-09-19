@@ -18,6 +18,14 @@ public class Result implements Serializable {
         warns.addAll(other.getWarns());
     }
 
+    public void addInfo(String key, Object... parameters) {
+        infos.add(new Information(key, parameters));
+    }
+
+    public void addWarn(String key, Object... parameters) {
+        warns.add(new Information(key, parameters));
+    }
+
     public boolean hasInfo() {
         return !infos.isEmpty();
     }

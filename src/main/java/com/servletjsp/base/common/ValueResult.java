@@ -2,6 +2,8 @@ package com.servletjsp.base.common;
 
 public class ValueResult<T> extends Result {
     private static final long serialVersionUID = 1L;
+    
+    /* Value Result */
     private T                 value;
 
     public ValueResult() {
