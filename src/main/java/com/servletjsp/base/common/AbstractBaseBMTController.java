@@ -1,6 +1,5 @@
 package com.servletjsp.base.common;
 
-import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,16 +15,14 @@ import com.servletjsp.base.common.expceitons.ApplicationCheckException;
 import com.servletjsp.base.common.expceitons.ApplicationSystemException;
 
 /**
- * AbstractBaseController
+ * AbstractBaseBMTController
  * 
  * @author Admin
  *
  */
-public abstract class AbstractBaseController implements Serializable {
+public class AbstractBaseBMTController extends AbstractBaseBMTSessionBean {
 
-    private static final long serialVersionUID = 1L;
-
-    private ValueResult<?>    valueResult;
+    private ValueResult<?> valueResult;
 
     /**
      * Do service
@@ -47,79 +44,74 @@ public abstract class AbstractBaseController implements Serializable {
         } catch (IllegalAccessException | IllegalArgumentException e) {
             throw new ApplicationCheckException(SystemErrorCodeConstants.SYSTEM, e);
         }
+
     }
 
     /**
      * Find action method
      * 
      * @param actionName     The action name
-     * @param chanceTypeCode The Chance Type Code
+     * @param chanceTypeCode The chance type code
      * @return {@link Method}
      */
     private Method findMethod(String actionName, String chanceTypeCode) {
         /*
-         * In case of system Chance Type not defined, throw an system Chance Type
-         * Exception
+         * In case of system Crud type not defined, throw an system Chance Type
+         * exception
          */
         if (StringUtils.isBlank(chanceTypeCode)) {
-            throw new ApplicationCheckException(SystemErrorCodeConstants.SYSTEM_LOGIC,
-                    new IllegalArgumentException("Crud Type Code Invalid"));
+            throw new ApplicationCheckException(SystemErrorCodeConstants.SYSTEM,
+                    new IllegalArgumentException("Crud type code invalid"));
         }
 
-        List<Method> _listOfMethodApplyForRegion = findMethodApplyForChanceType(chanceTypeCode);
-        for (Method _method : _listOfMethodApplyForRegion) {
+        List<Method> _listOfMethodApplyForRegin = findMethodApplyForChanceType(chanceTypeCode);
+        for (Method _method : _listOfMethodApplyForRegin) {
             _method.setAccessible(true);
             Annotation _annotation = _method.getAnnotation(NController.class);
             if (_annotation != null) {
                 String _actionName = ((NController) _annotation).action();
-                if (StringUtils.isBlank(_actionName) && _actionName.equalsIgnoreCase(actionName)) {
-                    return _method;
-                }
+                if (StringUtils.isNotBlank(_actionName) && _actionName.equalsIgnoreCase(actionName))
+                    ;
+                return _method;
             }
-
         }
 
-        /* In case of action method not found, throw a system exception */
-        throw new ApplicationSystemException(SystemErrorCodeConstants.SYSTEM_LOGIC,
+        /* In case of action method not found, throw an system exception */
+        throw new ApplicationSystemException(SystemErrorCodeConstants.SYSTEM,
                 new IllegalArgumentException("Action method not found"));
     }
 
     /**
-     * Find method apply for Chance Type Code;
-     * 
-     * @param chanceTypeCode The Chance Type Code
+     * Find method apply for CHANCE type
+     * @param chanceTypeCode The chance type code
      * @return List<Method>
      */
     private List<Method> findMethodApplyForChanceType(String chanceTypeCode) {
         List<Method> _listOfActionMethods = new ArrayList<Method>();
-        if (StringUtils.isNotBlank(chanceTypeCode)) {
-            List<Method> _listOfDeclaredMethods = new ArrayList<Method>(Arrays.asList(getClass().getDeclaredMethods()));
-            for (Method _method : _listOfDeclaredMethods) {
-                if (_method.isAnnotationPresent(NController.class)) {
-                    Annotation _annotation = _method.getAnnotation(NController.class);
-                    if (_annotation != null) {
-                        String _applyForChanceType = ((NController)_annotation).apply();
-                        if (StringUtils.isNotBlank(_applyForChanceType)) {
-                            _listOfActionMethods.add(_method);
-                        }
+        if (StringUtils.isBlank(chanceTypeCode)) {
+            return _listOfActionMethods;
+        }
+
+        List<Method> _listOfDelcaredMethods = new ArrayList<Method>(Arrays.asList(getClass().getMethods()));
+        for (Method _method : _listOfDelcaredMethods) {
+            if (_method.isAnnotationPresent(NController.class)) {
+                Annotation _annotation = _method.getAnnotation(NController.class);
+                if (_annotation != null) {
+                    String _applyForCrudType = ((NController) _annotation).action();
+                    if (StringUtils.isNotBlank(_applyForCrudType)
+                            && _applyForCrudType.equalsIgnoreCase(chanceTypeCode)) {
+                        _listOfDelcaredMethods.add(_method);
                     }
                 }
-
             }
         }
         return _listOfActionMethods;
     }
 
-    /**
-     * @return the valueResult
-     */
     public ValueResult<?> getValueResult() {
         return valueResult;
     }
 
-    /**
-     * @param valueResult the valueResult to set
-     */
     public void setValueResult(ValueResult<?> valueResult) {
         this.valueResult = valueResult;
     }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -60,7 +61,7 @@ public class AbstractWebBaseBackingBean implements Serializable {
      */
     private void reset() {
         // For overriding.
-        
+
     }
 
     /**
@@ -108,5 +109,17 @@ public class AbstractWebBaseBackingBean implements Serializable {
                 }
             }
         }
+    }
+
+    /**
+     * Bean Validation<br>
+     * For Overriding if need.
+     * 
+     * @param locale           Locale
+     * @param actionMethodName String
+     * @return True mean valid, otherwise false.
+     */
+    public boolean validate(Locale locale, String actionMethodName) {
+        return true;
     }
 }

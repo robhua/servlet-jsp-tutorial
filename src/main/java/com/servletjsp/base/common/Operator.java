@@ -1,8 +1,12 @@
 package com.servletjsp.base.common;
 
 import java.io.Serializable;
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.servletjsp.base.common.constants.CommonConstants;
+import com.servletjsp.base.common.constants.WebCommonConstants;
 
 /**
  * 
@@ -27,4 +31,12 @@ public class Operator implements Serializable {
         this.operatorBean = operatorBean;
     }
 
+    public Locale obtainLocale() {
+        return new Locale(StringUtils.isNoneBlank(getLanguage()) ? getLanguage() : WebCommonConstants.DEFAULT_LANGUAGE);
+    }
+
+    private String getLanguage() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

@@ -18,6 +18,9 @@ public class WebCommonConstants {
     public static final String ASCENDING             = "A";
     public static final String DESCENDING            = "D";
 
+    public static final String DEFAULT_LANGUAGE      = "en";
+    public static final String JAPANESE_LANGUAGE     = "ja";
+
     /** Screen ID */
     public static final String ALL_SYSTEM_ID         = "000";
     public static final String LOGON                 = "001";

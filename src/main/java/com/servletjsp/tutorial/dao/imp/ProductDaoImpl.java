@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+
 import com.servletjsp.tutorial.constant.DBFields.PRODUCT;
 import com.servletjsp.tutorial.dao.ProductDao;
 import com.servletjsp.tutorial.constant.DBTables;
@@ -23,6 +25,8 @@ import entity.Product;
  *
  * @author Admin
  */
+
+@RequestScoped
 public class ProductDaoImpl implements ProductDao {
 
     private static final String SELECT_ALL_PRODUCT = " SELECT * " + " FROM " + DBTables.PRODUCT;

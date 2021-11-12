@@ -11,7 +11,7 @@ import com.servletjsp.base.common.constants.CommonConstants;
 import com.servletjsp.base.common.expceitons.ApplicationLogicException;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static com.servletjsp.base.common.constants.SystemErrorCodeConstatns.LOGIC;
+import static com.servletjsp.base.common.constants.SystemErrorCodeConstants.LOGIC;
 
 public class CrudDateUtil {
     public enum DateFormat {

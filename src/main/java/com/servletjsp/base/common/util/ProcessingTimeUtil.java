@@ -9,7 +9,7 @@ import java.util.TimeZone;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import com.servletjsp.base.common.constants.SystemErrorCodeConstatns;
+import com.servletjsp.base.common.constants.SystemErrorCodeConstants;
 import com.servletjsp.base.common.expceitons.ApplicationDataException;
 import com.servletjsp.tutorial.until.CrudDateUtil;
 import static com.servletjsp.tutorial.until.CrudDateUtil.DateFormat.DATE_WITHOUT_HOURS;
@@ -56,7 +56,7 @@ public class ProcessingTimeUtil {
             }
             return _processingTime;
         } catch (ParseException e) {
-            throw new ApplicationDataException(SystemErrorCodeConstatns.SYSTEM_LOGIC, e);
+            throw new ApplicationDataException(SystemErrorCodeConstants.SYSTEM_LOGIC, e);
         }
     }
 
@@ -94,7 +94,7 @@ public class ProcessingTimeUtil {
         try {
             return BUNDLE.getString(key);
         } catch (Exception e) {
-            throw new ApplicationDataException(SystemErrorCodeConstatns.ERROR_LOAD_PROPERTY, e);
+            throw new ApplicationDataException(SystemErrorCodeConstants.ERROR_LOAD_PROPERTY, e);
         }
     }
 }

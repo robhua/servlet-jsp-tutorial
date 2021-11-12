@@ -15,7 +15,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.servletjsp.base.common.constants.CommonConstants;
-import com.servletjsp.base.common.constants.SystemErrorCodeConstatns;
+import com.servletjsp.base.common.constants.SystemErrorCodeConstants;
 import com.servletjsp.base.common.expceitons.ApplicationSystemException;
 import com.servletjsp.base.file.util.CrudSettingUtil;
 
@@ -59,7 +59,7 @@ public class ReportUtils {
             }
 
         } catch (IOException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.SYSTEM, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstants.SYSTEM, e);
         } finally {
             /* Release resources when process completed */
             if (reportBean.isCompleted()) {
@@ -92,7 +92,7 @@ public class ReportUtils {
                 workbook.close();
             }
         } catch (IOException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.SYSTEM, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstants.SYSTEM, e);
         }
 
     }

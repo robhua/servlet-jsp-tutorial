@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.servletjsp.base.common.constants.SystemErrorCodeConstatns;
+import com.servletjsp.base.common.constants.SystemErrorCodeConstants;
 import com.servletjsp.base.common.expceitons.ApplicationCheckException;
 import com.servletjsp.base.common.expceitons.ApplicationSystemException;
 
@@ -32,7 +32,7 @@ public abstract class AbstractBaseService implements Serializable {
                 _method.invoke(this, requestDTO);
             }
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            throw new ApplicationCheckException(SystemErrorCodeConstatns.SYSTEM, e);
+            throw new ApplicationCheckException(SystemErrorCodeConstants.SYSTEM, e);
         }
     }
 
@@ -45,7 +45,7 @@ public abstract class AbstractBaseService implements Serializable {
     private Method findMethod(String chanceTypeCode) {
         /* In case of system Chance Type not defined, throw an system Chance Type Exception */
         if (StringUtils.isBlank(chanceTypeCode)) {
-            throw new ApplicationCheckException(SystemErrorCodeConstatns.SYSTEM_LOGIC,
+            throw new ApplicationCheckException(SystemErrorCodeConstants.SYSTEM_LOGIC,
                     new IllegalArgumentException("Chance Type Code Invalid"));
         }
 
@@ -65,7 +65,7 @@ public abstract class AbstractBaseService implements Serializable {
         }
 
         /* In case of action method not found, throw a system exception */
-        throw new ApplicationSystemException(SystemErrorCodeConstatns.SYSTEM_LOGIC,
+        throw new ApplicationSystemException(SystemErrorCodeConstants.SYSTEM_LOGIC,
                 new IllegalArgumentException("Action method not found"));
     }
 

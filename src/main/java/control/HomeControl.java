@@ -6,8 +6,8 @@
 package control;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.servletjsp.tutorial.constant.WebConstant;
-import com.servletjsp.tutorial.dao.CategoryDao;
-import com.servletjsp.tutorial.dao.ProductDao;
-import com.servletjsp.tutorial.dao.imp.CategoryDaoImpl;
-import com.servletjsp.tutorial.dao.imp.ProductDaoImpl;
-
-import entity.Category;
-import entity.Product;
 
 /**
  * @author Admin
@@ -31,9 +24,9 @@ import entity.Product;
 @WebServlet(name = "HomeControl", urlPatterns = { WebConstant.URL_PATTERN_HOME })
 public class HomeControl extends HttpServlet {
 
-    private final static Logger logger = Logger.getLogger(Logger.class.getName());
-    private static final long serialVersionUID = 1L;
-
+    private final static Logger logger           = Logger.getLogger(Logger.class.getName());
+    private static final long   serialVersionUID = 1L;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,17 +39,10 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType(WebConstant.CONTENT_TYPE_TEXT_HTML);
-        // b1: get data from dao
-        ProductDao dao = new ProductDaoImpl();
-        List<Product> list = dao.getTop3();
-        CategoryDao categoryDao = new CategoryDaoImpl();
-        List<Category> listC = categoryDao.getAllCategory();
-        Product last = dao.getLast();
-
-        // b2: set data to jsp
-        request.setAttribute("productList", list);
-        request.setAttribute("listCC", listC);
-        request.setAttribute("p", last);
+        // b1: set data to jsp
+        request.setAttribute("productList", CrudDelegator.getInstance().getTop3Product());
+        request.setAttribute("listCC", CrudDelegator.getInstance().getAllCategory());
+        request.setAttribute("p", CrudDelegator.getInstance().getLastProduct());
         request.getRequestDispatcher("Home.jsp").forward(request, response);
         // 404 -> url
         // 500 -> jsp properties

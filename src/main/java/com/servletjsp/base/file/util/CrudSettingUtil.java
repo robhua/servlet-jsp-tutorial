@@ -6,7 +6,7 @@ import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import com.servletjsp.base.common.constants.SystemErrorCodeConstatns;
+import com.servletjsp.base.common.constants.SystemErrorCodeConstants;
 import com.servletjsp.base.common.expceitons.ApplicationSystemException;
 
 public class CrudSettingUtil {
@@ -32,7 +32,7 @@ public class CrudSettingUtil {
             ResourceBundle _resourceBundle = PropertyResourceBundle.getBundle(CRUD_WEB_SETTING);
             _resourceBundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.ERROR_READ_PROPERTY, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstants.ERROR_READ_PROPERTY, e);
         }
         return _value;
     }
@@ -49,7 +49,7 @@ public class CrudSettingUtil {
             ResourceBundle _resourceBundle = PropertyResourceBundle.getBundle(CRUD_EXTERNAL_SETTING);
             _resourceBundle.getString(key);
         } catch (NullPointerException | MissingResourceException | ClassCastException e) {
-            throw new ApplicationSystemException(SystemErrorCodeConstatns.ERROR_READ_PROPERTY, e);
+            throw new ApplicationSystemException(SystemErrorCodeConstants.ERROR_READ_PROPERTY, e);
         }
         return _value;
     }

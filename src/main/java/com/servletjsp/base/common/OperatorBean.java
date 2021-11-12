@@ -26,6 +26,7 @@ public class OperatorBean implements Serializable {
     private String            dispatchCode;
     private String            dispatchGroupCode;
     private String            chanceTypeCode;
+    private String            muCode;
 
     private String            userMailAddress;
     private String            passwordAdminFlag;
@@ -205,4 +206,11 @@ public class OperatorBean implements Serializable {
         this.chanceTypeCode = chanceTypeCode;
     }
 
+    public String getMuCode() {
+        return muCode;
+    }
+
+    public void setMuCode(String muCode) {
+        this.muCode = muCode;
+    }
 }
