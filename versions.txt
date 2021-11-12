@@ -5,3 +5,4 @@ Common_menu---1
 CommonMenu
 A01002
 BBS_List
+BBS_register
