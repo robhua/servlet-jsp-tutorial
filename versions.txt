@@ -1,4 +1,7 @@
 A01001
+A01001---1
+A01001---2
+Common_menu---1
 CommonMenu
 A01002
 BBS_register
